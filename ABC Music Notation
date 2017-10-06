@@ -1,8 +1,0 @@
-music = open('hnr1.abc')
-
-for line in music:
-    print (line)
-
-# for line in music:
-#     if line[0:2] == "X:":
-#         print(line,end = "")

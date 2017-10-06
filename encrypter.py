@@ -7,7 +7,7 @@ while len(plaintext) > 0:
     cyphertext = cyphertext + cypherchar
     plaintext = plaintext[:-1]
 
-print (cyphertext)
+print(cyphertext)
 
 cyphertext = input("Please enter a phrase to be decrypted: ")
 
@@ -18,4 +18,4 @@ while len(cyphertext) > 0:
     plaintext = plaintext + char
     cyphertext = cyphertext[:-1]
 
-print (plaintext)
+print(plaintext)
