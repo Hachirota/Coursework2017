@@ -7,7 +7,7 @@ with urllib.request.urlopen("http://mf2.dit.ie/gettysburg.txt") as response:
 gettysburg = gettysburg_bytes.decode("utf-8")
 for char in gettysburg:
     if char in string.punctuation:
-        str.strip(char)
+        gettysburg = gettysburg.replace(char,'')
 gettysburg_list = gettysburg.split()
 gettysburg_list = [element.lower() for element in gettysburg_list]
 
@@ -24,20 +24,19 @@ punctuation = str.split(string.punctuation)
 
 wordlist = {}
 wordcount = 0
-uniquewords = 0
 
 for word in gettysburg_list:
     if not word in stopwords_list:
         wordcount = wordcount + 1
         if not word in wordlist:
             wordlist[word] = 1
-            uniquewords = uniquewords + 1
+
         else:
             wordlist[word] = wordlist[word] + 1
 
 
 print("The number of words in the speech, excluding 'Stop Words' is: ", wordcount)
-print ("The number of unique words is: ",uniquewords)
+print ("The number of unique words is: ",len(wordlist))
 
 for k,v in wordlist.items():
     print(k, v)
