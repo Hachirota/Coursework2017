@@ -1,10 +1,10 @@
 import string
-import urllib.request
+import httplib2
 
-with urllib.request.urlopen("http://mf2.dit.ie/gettysburg.txt") as response:
-    gettysburg_bytes = response.read()
+gettysburg = httplib2.Http(".cache")
+headers, body = gettysburg.request("http://mf2.dit.ie/gettysburg.txt", "GET")
 
-gettysburg = gettysburg_bytes.decode()
+gettysburg = body.decode()
 for char in gettysburg:
     if char in string.punctuation:
         gettysburg = gettysburg.replace(char,'')
@@ -12,10 +12,10 @@ for char in gettysburg:
 gettysburg_list = gettysburg.split()
 gettysburg_list = [element.lower() for element in gettysburg_list]
 
-with urllib.request.urlopen("http://mf2.dit.ie/stopwords.txt") as response:
-    stopwords_bytes = response.read()
 
-stopwords = stopwords_bytes.decode()
+stopwords = httplib2.Http(".cache")
+headers, body = stopwords.request("http://mf2.dit.ie/stopwords.txt")
+stopwords = body.decode()
 
 stopwords_list = stopwords.split(",")
 
